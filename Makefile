@@ -1,5 +1,5 @@
-make:
-	gcc -o Project2 Project2.c
+all:
+	gcc -o main main.c -lpthread
 
 clean:
-	Project2
+	rm main

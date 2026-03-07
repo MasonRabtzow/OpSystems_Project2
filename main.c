@@ -10,3 +10,22 @@ typedef struct {
     int columnl;
     int index;
 } parameters;
+
+// Check Rows
+
+
+// Check Columns
+
+
+// Check 3x3
+
+
+// Check 1 Row
+
+
+// Check 1 Column
+
+
+// Main
+
+

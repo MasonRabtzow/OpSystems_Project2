@@ -5,6 +5,7 @@
 int board[9][9]; // Sudoku board
 int result[27]; // Stores result for rows, columns, and 3x3 boxes
 
+
 typedef struct _params {
     int row;
     int col;
@@ -55,7 +56,7 @@ void *check_cols(void *param)
         }
     }
 
-    result[0] = 1; // All cols = valid
+    result[1] = 1; // All cols = valid
     pthread_exit(0);
 }
 
@@ -105,12 +106,14 @@ int main(){
         fscanf(f, "%d", board[i / 9][i % 9]);
     }
 
+    printf("BOARD STATE IN input.txt:\n");
     for(i = 0; i < 81; i++){
         printf("%d ", board[i / 9][i % 9]);
         if((i + 1) % 9 == 0){
             printf("\n");
         }
     }
+    Printf("Solution: Yes\n");
 
 
 

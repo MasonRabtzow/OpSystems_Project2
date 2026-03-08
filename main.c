@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <fstream.h>
 #include <stdlib.h>
 #include <pthread.h>
 
@@ -96,12 +95,18 @@ void *check_3x3(void *param)
 int main(){
     FILE *f;
     f = fopen("input.txt", "r");
-    char nums[100];
-    while(fgets(num, 100, f));
+    int nums[100];
+    int num, i = 0;
 
-    for(int i = 0; i < 100; i++){
-        printf("%s\n");
+    while(fscanf(f, "%d", num) == 1){
+        nums[i] = num;
+        i++;
     }
 
+    for(int i = 0; i < 100; i++){
+        printf("%d\n", nums[i]);
+    }
+
+    fclose(f);
     return 0;
 }

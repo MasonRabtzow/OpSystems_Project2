@@ -95,18 +95,23 @@ void *check_3x3(void *param)
 int main(){
     FILE *f;
     f = fopen("input.txt", "r");
-    int nums[100];
+    int nums[81];
     int num, i = 0;
 
-    while(fscanf(f, "%d", num) == 1){
-        nums[i] = num;
-        i++;
+    for(i = 0; i < 81; i++){
+        fscanf(f, "%d", board[i / 9][i % 9]);
     }
 
-    for(int i = 0; i < 100; i++){
-        printf("%d\n", nums[i]);
+    for(i = 0; i < 81; i++){
+        printf("%d ", board[i / 9][i % 9]);
+        if((i + 1) % 9 == 0){
+            printf("\n");
+        }
     }
+
+
 
     fclose(f);
     return 0;
 }
+

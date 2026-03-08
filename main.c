@@ -61,7 +61,30 @@ void *check_cols(void *param)
 }
 
 // Check 3x3
+void *check_3x3(void *param)
+{
+    params *p = (params *) param;
 
+    int row = p->row;
+    int col = p->col;
+    int index = p->index;
+
+    int seen[10] = {0};
+
+    for (int i = row; i < row + 3; i++) {
+        
+        for (int j = col; j < col + 3; j++) {
+            int num = board[i][j];
+            //check if valid
+            if (num < 1 || num > 9 || seen[num]) {
+                result[index] = 0;
+                pthread_exit(0);
+            }
+            
+            seen[num] = 1;
+        }
+    }
+}
 
 // Check 1 Row
 

@@ -43,16 +43,16 @@ void *check_cols(void *param)
     int j;
 
     for (i = 0; i < 9; i++) {
-        int seen[10] = {0};
+        int check[10] = {0};
 
         for (j = 0; j < 9; j++) {
             int num = board[j][i];
             //check if valid
-            if (num < 1 || num > 9 || seen[num]) {
+            if (num < 1 || num > 9 || check[num]) {
                 result[0] = 0;
                 pthread_exit(0);
             }
-            seen[num] = 1;
+            check[num] = 1;
         }
     }
 
@@ -69,19 +69,19 @@ void *check_3x3(void *param)
     int col = p->col;
     int index = p->index;
 
-    int seen[10] = {0};
+    int check[10] = {0};
 
     for (int i = row; i < row + 3; i++) {
         
         for (int j = col; j < col + 3; j++) {
             int num = board[i][j];
             //check if valid
-            if (num < 1 || num > 9 || seen[num]) {
+            if (num < 1 || num > 9 || check[num]) {
                 result[index] = 0;
                 pthread_exit(0);
             }
             
-            seen[num] = 1;
+            check[num] = 1;
         }
     }
 
@@ -89,10 +89,31 @@ void *check_3x3(void *param)
     pthread_exit(0);
 }
 
-// Check 1 Row
+// Check 1 Row (Mode 2)
+void check_row_thread(void *param)
+{
+    params *p = (params*) param;
 
+    int row = p->row;
+    int index = p->index;
 
-// Check 1 Column
+    int check[10] = {0};
+
+    for (int j = 0; j < 9; j++) {
+        int num = board[row][j];
+        //check if valid
+        if (num < 1 || num > 9 || check[num]) {
+            result[index] = 0;
+            pthread_exit(0);
+        }
+        check[num] = 1;
+    }
+
+    result[index] = 1; // Row = valid
+    pthread_exit(0);
+}
+
+// Check 1 Column (Mode 2)
 
 
 // Main

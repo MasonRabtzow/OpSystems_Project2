@@ -62,7 +62,7 @@ void *check_cols(void *param)
 // Check 3x3
 void *check_3x3(void *param)
 {
-    params *p = (params *) param;
+    params *p = (params*) param;
 
     int row = p->row;
     int col = p->col;

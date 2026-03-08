@@ -5,11 +5,11 @@
 int board[9][9]; // Sudoku board
 int result[27]; // Stores result for rows, columns, and 3x3 boxes
 
-typedef struct {
+typedef struct _params {
     int row;
-    int columnl;
+    int col;
     int index;
-} parameters;
+} params;
 
 // Check Rows
 void *check_rows(void *param)
@@ -83,6 +83,9 @@ void *check_3x3(void *param)
             seen[num] = 1;
         }
     }
+
+    result[index] = 1; // 3x3 box = valid
+    pthread_exit(0);
 }
 
 // Check 1 Row

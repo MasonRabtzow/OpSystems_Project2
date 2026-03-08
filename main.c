@@ -49,7 +49,7 @@ void *check_cols(void *param)
             int num = board[j][i];
             //check if valid
             if (num < 1 || num > 9 || check[num]) {
-                result[0] = 0;
+                result[1] = 0;
                 pthread_exit(0);
             }
             check[num] = 1;
@@ -90,7 +90,7 @@ void *check_3x3(void *param)
 }
 
 // Check 1 Row (Mode 2)
-void check_row_thread(void *param)
+void *check_row_thread(void *param)
 {
     params *p = (params*) param;
 
@@ -124,7 +124,7 @@ int main(){
     int num, i = 0;
 
     for(i = 0; i < 81; i++){
-        fscanf(f, "%d", board[i / 9][i % 9]);
+        fscanf(f, "%d", &board[i / 9][i % 9]);
     }
 
     printf("BOARD STATE IN input.txt:\n");
@@ -134,7 +134,7 @@ int main(){
             printf("\n");
         }
     }
-    Printf("Solution: Yes\n");
+    printf("Solution: Yes\n");
 
 
 

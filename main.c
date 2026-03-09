@@ -114,7 +114,28 @@ void *check_row_thread(void *param)
 }
 
 // Check 1 Column (Mode 2)
+void *check_col_thread(void *param)
+{
+    params *p = (params*) param;
 
+    int col = p->col;
+    int index = p->index;
+
+    int check[10] = {0};
+
+    for (int i = 0; i < 9; i++) {
+        int num = board[i][col];
+        //check if valid
+        if (num < 1 || num > 9 || check[num]) {
+            result[index] = 0;
+            pthread_exit(0);
+        }
+        check[num] = 1;
+    }
+
+    result[index] = 1; // Column = valid
+    pthread_exit(0);
+}
 
 // Main
 int main(){

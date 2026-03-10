@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <time.h>
+#include <time.h> // For runtime output
 
 int board[9][9]; // Sudoku board
 int result[27]; // Stores result for rows, columns, and 3x3 boxes

@@ -162,10 +162,8 @@ int main(int argc, char *argv[]){
         }
     }
 
-
     // Start system timer
     clock_t start = clock();
-
 
     if(mode == 1){
         pthread_t threads[11];
@@ -220,13 +218,6 @@ int main(int argc, char *argv[]){
         fclose(f);
         return 1;
     }
-
-
-
-
-
-
-
 
     // Confirm result
     int correct = 1;

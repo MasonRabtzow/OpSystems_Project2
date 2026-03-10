@@ -161,9 +161,65 @@ int main(int argc, char *argv[]){
             printf("\n");
         }
     }
+
+
     // Start system timer
     clock_t start = clock();
 
+
+    if(mode == 1){
+        pthread_t threads[11];
+        pthread_create(&threads[t], NULL, check_rows, NULL);
+        t++;
+        pthread_create(&threads[t], NULL, check_cols, NULL);
+        t++;
+
+        for(i = 0; i < 9; i+=3){
+            params *p = (params*) malloc(sizeof(params));
+            p->row = (i);
+            p->col = (i);
+            p->index = t;
+            pthread_create(&threads[t], NULL, check_3x3, (void*) p);
+            t++;
+        }
+
+        for(i = 0; i < 11; i++){
+            pthread_join(threads[i], NULL);
+        }
+    } else if(mode == 2){
+        pthread_t threads[27];
+        for(i = 0; i < 9; i++){
+            params *p_row = (params*) malloc(sizeof(params));
+            p_row->row = i;
+            p_row->index = t;
+            pthread_create(&threads[t], NULL, check_row_thread, (void*) p_row);
+            t++;
+        }
+        for(i = 0; i < 9; i++){
+            params *p_col = (params*) malloc(sizeof(params));
+            p_col->col = i;
+            p_col->index = t;
+            pthread_create(&threads[t], NULL, check_col_thread, (void*) p_col);
+            t++;
+        }
+
+        for(i = 0; i < 9; i+=3){
+            params *p = (params*) malloc(sizeof(params));
+            p->row = (i);
+            p->col = (i);
+            p->index = t;
+            pthread_create(&threads[t], NULL, check_3x3, (void*) p);
+            t++;
+        }
+
+        for(i = 0; i < 27; i++){
+            pthread_join(threads[i], NULL);
+        }
+    } else {
+        printf("Invalid mode. Use 1 for full board check or 2 for row/column check.\n");
+        fclose(f);
+        return 1;
+    }
 
 
 
@@ -194,4 +250,3 @@ int main(int argc, char *argv[]){
 
     return 0;
 }
-

@@ -172,13 +172,16 @@ int main(int argc, char *argv[]){
         pthread_create(&threads[t], NULL, check_cols, NULL);
         t++;
 
-        for(i = 0; i < 9; i+=3){
-            params *p = (params*) malloc(sizeof(params));
-            p->row = (i);
-            p->col = (i);
-            p->index = t;
-            pthread_create(&threads[t], NULL, check_3x3, (void*) p);
-            t++;
+        for(int r = 0; r < 9; r += 3){
+            for(int c = 0; c < 9; c += 3){
+                params *p = malloc(sizeof(params));
+                p->row = r;
+                p->col = c;
+                p->index = t;
+
+                pthread_create(&threads[t], NULL, check_3x3, p);
+                t++;
+            }
         }
 
         for(i = 0; i < 11; i++){
@@ -201,13 +204,16 @@ int main(int argc, char *argv[]){
             t++;
         }
 
-        for(i = 0; i < 9; i+=3){
-            params *p = (params*) malloc(sizeof(params));
-            p->row = (i);
-            p->col = (i);
-            p->index = t;
-            pthread_create(&threads[t], NULL, check_3x3, (void*) p);
-            t++;
+        for(int r = 0; r < 9; r += 3){
+            for(int c = 0; c < 9; c += 3){
+                params *p = malloc(sizeof(params));
+                p->row = r;
+                p->col = c;
+                p->index = t;
+
+                pthread_create(&threads[t], NULL, check_3x3, p);
+                t++;
+            }
         }
 
         for(i = 0; i < 27; i++){

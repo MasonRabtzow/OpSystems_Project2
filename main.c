@@ -1,3 +1,8 @@
+/** David Amador & Mason Rabtzow
+ CSC345-01
+ Project 2
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

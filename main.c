@@ -155,8 +155,7 @@ void *check_col_thread(void *param)
 int main(int argc, char *argv[]){
     FILE *f;
     f = fopen("input.txt", "r");
-    int nums[81];
-    int num, i = 0;
+    int i = 0;
 
     int mode = atoi(argv[1]);
 
